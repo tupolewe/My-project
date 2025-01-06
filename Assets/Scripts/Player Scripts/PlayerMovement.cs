@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-
+    #region ANIMATION CONTROLLER
     public bool IsMoving()
     {
         if(movement != Vector2.zero)
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    #region ANIMATION CONTROLLER
+ 
     public void AnimationController()
     {
         if (IsMoving())
