@@ -37,7 +37,6 @@ public class PlayerRayCast : MonoBehaviour
             if (interactable != null && Input.GetKeyDown(KeyCode.E))
             {
                 playerInteractPos = transform.position;
-                Debug.Log(playerInteractPos);
                 interactable.Interact();
                 Debug.Log("Interakcja2");
             }

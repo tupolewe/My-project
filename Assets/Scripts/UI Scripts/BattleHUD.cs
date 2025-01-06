@@ -9,8 +9,14 @@ public class BattleHUD : MonoBehaviour
 {
     public BattleSystem battleSystem;
     public BattleState battleState;
+
+    [Header("Text Related Variables")]
     public TextMeshProUGUI playerBattleDialogue;
     public TextMeshProUGUI enemyBattleDialogue;
+    public TextMeshProUGUI playerHealthHUD;
+    public TextMeshProUGUI enemyHealthHUD;
+    public TextMeshProUGUI enemyName;
+    [Space]
     public Canvas battleCanvas;
     
     void Start()
@@ -32,10 +38,15 @@ public class BattleHUD : MonoBehaviour
 
     public void OnHealButton()
     {
-        if (battleSystem.battleState != BattleState.PLAYERTURN)
-            return;
+        
+        if (battleSystem.battleState == BattleState.PLAYERTURN)
+        {
+            battleSystem.PlayerHeal();
+            
+        }
+            
 
-        //StartCoroutine(PlayerHeal());
+       
     }
 
 

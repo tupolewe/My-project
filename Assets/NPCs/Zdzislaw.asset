@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Zdzislaw
   lvl: 1
   health: 5
-  damage: 1
+  damage: 3
   stamina: 4

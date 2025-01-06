@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -51,6 +52,7 @@ public class BattleSystem : MonoBehaviour
        
 
        battleHUD.playerBattleDialogue.text = "The fight starts now!";
+       UpdateHUDStats();
 
        yield return new WaitForSeconds(2f);
 
@@ -66,6 +68,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         bool isDead = playerStats.PlayerTakeDamage(npcInteraction.npc);
+        UpdateHUDStats();
 
         yield return new WaitForSeconds(1f);
 
@@ -83,6 +86,7 @@ public class BattleSystem : MonoBehaviour
             PlayerTurn();
         }
 
+        
 
     }
 
@@ -120,6 +124,7 @@ public class BattleSystem : MonoBehaviour
     public void PlayerAttack()
     {
         bool isDead = npcInteraction.TakeDamage(playerStats);
+        UpdateHUDStats();
 
         if (isDead)
         {
@@ -133,7 +138,24 @@ public class BattleSystem : MonoBehaviour
             battleState = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
+
+        
+    }
+
+    public void PlayerHeal()
+    {
+        playerStats.health+=2;
+        battleHUD.playerBattleDialogue.text = "You healed";
+        UpdateHUDStats();
+        StartCoroutine(EnemyTurn());
     }
     #endregion 
 
+
+    public void UpdateHUDStats() // updates the stats that are displayed on the screen 
+    {
+        battleHUD.enemyName.text = npcInteraction.npc.name;
+        battleHUD.playerHealthHUD.text = "Health:" + playerStats.health.ToString();
+        battleHUD.enemyHealthHUD.text = "Health:" + npcInteraction.npc.health.ToString();
+    }
 }

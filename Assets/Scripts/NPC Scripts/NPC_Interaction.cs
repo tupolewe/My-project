@@ -32,7 +32,8 @@ public class NPC_Interaction : MonoBehaviour, Interactable
         npc.health -= playerStats.damage; 
 
         if (npc.health <= 0)
-        {
+        {   
+            npc.health = 0;
             Debug.Log("death");
             return true;
         }
