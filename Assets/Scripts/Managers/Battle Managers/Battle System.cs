@@ -29,6 +29,10 @@ public class BattleSystem : MonoBehaviour
     public Canvas battleCanvas;
     public BattleHUD battleHUD;
     public Transform cameraPos;
+    [Header("Animation Controllers")]
+    [Space] 
+    public NPCBattleAnimationController npcBattleAnimCon;
+
 
     public void Update()
     {
