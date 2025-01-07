@@ -17,7 +17,7 @@ public class NPC_Interaction : MonoBehaviour, Interactable
 
     public PlayerStats playerStats;
 
-    public static Vector2 npcInteractPos; //tracks enemy position at the moment of interaciton
+    
 
     public void Start()
     {

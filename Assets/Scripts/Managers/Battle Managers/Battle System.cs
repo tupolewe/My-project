@@ -90,8 +90,6 @@ public class BattleSystem : MonoBehaviour
             PlayerTurn();
         }
 
-        
-
     }
 
     IEnumerator EndBattle()
@@ -109,12 +107,6 @@ public class BattleSystem : MonoBehaviour
         battleCanvas.gameObject.SetActive(false);
 
         EndPositionSetup();
-
-        
-
-
-
-
 
     }
 
