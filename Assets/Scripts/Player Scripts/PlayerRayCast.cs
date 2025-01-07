@@ -7,10 +7,10 @@ public class PlayerRayCast : MonoBehaviour
 
     public float rayDistance;
     public LayerMask hitLayers;
-    public Vector2 rayDirection = Vector2.right;
-
+    public Vector2 rayDirection;
+    
     public static Vector2 playerInteractPos; //tracks player position at the moment of interaciton
-
+    public static Vector2 npcInteractPos; //tracks enemy position at the moment of interaciton
     public GameObject hitObject;
     
     void Update()
@@ -37,8 +37,11 @@ public class PlayerRayCast : MonoBehaviour
             if (interactable != null && Input.GetKeyDown(KeyCode.E))
             {
                 playerInteractPos = transform.position;
+                npcInteractPos = hit.collider.transform.position;
                 interactable.Interact();
-                Debug.Log("Interakcja2");
+                Debug.Log("Interakcja");
+                
+
             }
             else if (interactable != null)
             {

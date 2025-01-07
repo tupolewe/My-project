@@ -30,7 +30,7 @@ public class BattleHUD : MonoBehaviour
         
         if (battleSystem.battleState == BattleState.PLAYERTURN)
         {
-            battleSystem.PlayerAttack();
+            StartCoroutine(battleSystem.PlayerAttack());
         }
            
        

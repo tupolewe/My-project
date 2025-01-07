@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class NPC_Interaction : MonoBehaviour, Interactable
 {
     public NPC_prefab npc;
@@ -15,6 +16,8 @@ public class NPC_Interaction : MonoBehaviour, Interactable
     public BattleSystem battleSystem;
 
     public PlayerStats playerStats;
+
+    public static Vector2 npcInteractPos; //tracks enemy position at the moment of interaciton
 
     public void Start()
     {

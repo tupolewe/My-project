@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    int isMovingHash; 
+    [Header("Player Animation Variables")]
+    [Space]
+    int isMovingHash;
+    int isAttackingHash;
     public Animator animator;
+    [Space]
+    
     public float moveSpeed;
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
     public bool inBattle = false; //checks if the player is in battle 
+    public PlayerRayCast playerRayCast;
     
 
 
@@ -19,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();    
         isMovingHash = Animator.StringToHash("isMoving");
+        isAttackingHash = Animator.StringToHash("isAttacking");
     }
 
     void Update()
@@ -34,10 +41,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inBattle)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-            
-          
+
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
+
+            movement.x = Mathf.Abs(horizontalInput) > 0.1f ? horizontalInput : 0;
+            movement.y = Mathf.Abs(verticalInput) > 0.34f ? verticalInput : 0;
+
+
+
         }
         
 
@@ -58,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else { return false; }
         
-
+        
        
     }
 
@@ -80,11 +92,16 @@ public class PlayerMovement : MonoBehaviour
         if(movement.x < 0)
         {
             spriteRenderer.flipX = true;
+            playerRayCast.rayDirection = Vector2.left;
         }
         else if (movement.x > 0) 
         {
             spriteRenderer.flipX = false;
+            playerRayCast.rayDirection = Vector2.right;
         }
     }
+
+
+
     #endregion
 }
