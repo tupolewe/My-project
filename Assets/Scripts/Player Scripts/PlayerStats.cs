@@ -10,17 +10,20 @@ public class PlayerStats : MonoBehaviour
     public int health;
     public int damage;
     public int stamina;
+    public int agility;
 
+    public int minDamage;
+    public int maxDamage;
 
     public BattleSystem battleSystem;
     public NPC_prefab npc; 
     public NPC_Interaction npcInteraction;
     public PlayerRayCast playerRayCast;
-    public void Update()
+    
+   public int GetDamage()
     {
+        return Random.Range(minDamage, maxDamage);
         
-        
-
     }
 
 
@@ -32,6 +35,7 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("death");
+            health = 0;
             return true;
         }
         else
@@ -39,4 +43,6 @@ public class PlayerStats : MonoBehaviour
     }
 
    
+
+        
 }

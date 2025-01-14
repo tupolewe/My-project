@@ -17,11 +17,11 @@ public class NPC_Interaction : MonoBehaviour, Interactable
 
     public PlayerStats playerStats;
 
-    
+    public static int npcHealth;
 
     public void Start()
     {
-        
+        npc.health = npc.maxHealth;
     }
 
     public void Interact()
@@ -43,4 +43,11 @@ public class NPC_Interaction : MonoBehaviour, Interactable
         else 
             return false;   
     }
+
+    public int GetEnemyDamage()
+    {
+        return Random.Range(npc.minDamage, npc.maxDamage);
+    }
+
+
 }

@@ -15,5 +15,9 @@ MonoBehaviour:
   name: Marian
   lvl: 1
   health: 6
-  damage: 3
+  maxHealth: 10
+  damage: 1
+  minDamage: 1
+  maxDamage: 2
   stamina: 3
+  agility: 2

@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Zdzislaw
   lvl: 1
-  health: 5
-  damage: 3
+  health: 6
+  maxHealth: 6
+  damage: 1
+  minDamage: 1
+  maxDamage: 4
   stamina: 4
+  agility: 3

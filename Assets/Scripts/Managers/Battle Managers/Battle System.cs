@@ -32,6 +32,9 @@ public class BattleSystem : MonoBehaviour
     [Header("Animation Controllers")]
     [Space] 
     public NPCBattleAnimationController npcBattleAnimCon;
+    [Header("Dice Roll")]
+    [Space]
+    public DiceRoll diceRoll;
 
 
     public void Update()
@@ -44,15 +47,18 @@ public class BattleSystem : MonoBehaviour
     #region IENUMERATORS
     public IEnumerator SetupBattle()
     {
+       
        enemy = playerRayCast.hitObject;
        mainCamera.gameObject.transform.SetParent(null);
        battleState = BattleState.START;
        playerMovement.inBattle = true;
        battleCanvas.gameObject.SetActive(true);
        player.transform.position = playerBattlePosition.position;
+        player.transform.localScale += new Vector3(5, 5, 0);
        enemy.transform.position = enemyBattlePosition.position;
        mainCamera.gameObject.transform.position = battleCameraPosition.transform.position;
        npcInteraction = enemy.GetComponent<NPC_Interaction>();
+       
 
        
        battleHUD.playerBattleDialogue.text = "The fight starts now!";
@@ -67,67 +73,125 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
 
+        
+
+        yield return new WaitForSeconds(1f);
         battleHUD.enemyBattleDialogue.text = "Ale ci zaraz dopierdole";
 
-        yield return new WaitForSeconds(1f);
-
-        bool isDead = playerStats.PlayerTakeDamage(npcInteraction.npc);
-        UpdateHUDStats();
-
-        yield return new WaitForSeconds(1f);
-
-        if (isDead)
+        EnemyRoll();
+        EnemyHitChance();
+        if (EnemyHitChance())
         {
-            battleState = BattleState.LOST;
-            battleHUD.playerBattleDialogue.text = "You lost!";
+            EnemyDamage();
+            bool isDead = playerStats.PlayerTakeDamage(npcInteraction.npc);
+
+
+            yield return new WaitForSeconds(1f);
+
+            if (isDead)
+            {
+                battleState = BattleState.LOST;
+                battleHUD.playerBattleDialogue.text = "You lost!";
+                StartCoroutine(EndBattle());
+            }
+            else
+            {
+                battleHUD.playerBattleDialogue.text = "You took damage";
+
+                yield return new WaitForSeconds(1f);
+                battleState = BattleState.PLAYERTURN;
+                PlayerTurn();
+            }
         }
         else
         {
-            battleHUD.playerBattleDialogue.text = "you took damage";
-
+            Debug.Log("enemy missed");
+            battleHUD.playerBattleDialogue.text = "Enemy missed!";
             yield return new WaitForSeconds(1f);
             battleState = BattleState.PLAYERTURN;
             PlayerTurn();
         }
 
+        UpdateHUDStats();
+
     }
 
     IEnumerator EndBattle()
     {
-        yield return new WaitForSeconds(1f);
+      
+        if(battleState == BattleState.WON) 
+        {
+            yield return new WaitForSeconds(1f);
 
-        battleHUD.playerBattleDialogue.text = "you WON!";
-        
+            battleHUD.playerBattleDialogue.text = "YOU WON!";
 
-        yield return new WaitForSeconds(1f);
 
-        mainCamera.gameObject.transform.SetParent(cameraPos);
-        mainCamera.transform.position = cameraPos.transform.position;
-        playerMovement.inBattle = false;
-        battleCanvas.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1f);
 
-        EndPositionSetup();
+            mainCamera.gameObject.transform.SetParent(cameraPos);
+            mainCamera.transform.position = cameraPos.transform.position;
+            playerMovement.inBattle = false;
+            battleCanvas.gameObject.SetActive(false);
+            EnemyHealthReset();
+            EndPositionSetup();
+        }
+        else if (battleState == BattleState.LOST)
+        {
+            yield return new WaitForSeconds(1f);
 
+            battleHUD.playerBattleDialogue.text = "YOU LOST!";
+
+
+            yield return new WaitForSeconds(1f);
+
+            mainCamera.gameObject.transform.SetParent(cameraPos);
+            mainCamera.transform.position = cameraPos.transform.position;
+            playerMovement.inBattle = false;
+            battleCanvas.gameObject.SetActive(false);
+            EnemyHealthReset();
+            EndPositionSetup();
+        }
+
+        player.transform.localScale -= new Vector3(5, 5, 0);
     }
 
     public IEnumerator PlayerAttack()
     {
-        bool isDead = npcInteraction.TakeDamage(playerStats);
-        playerMovement.animator.SetBool("isAttacking", true);
-        UpdateHUDStats();
 
-        if (isDead)
+
+        PlayerRoll();
+        PlayerHitChance();
+        playerMovement.animator.SetBool("isAttacking", true);
+        if (PlayerHitChance())
         {
-            battleState = BattleState.WON;
-            battleHUD.playerBattleDialogue.text = "Enemy defeated!";
-            StartCoroutine(EndBattle());
+            PlayerDamage();
+            bool isDead = npcInteraction.TakeDamage(playerStats);
+            
+
+
+
+            if (isDead)
+            {
+                battleState = BattleState.WON;
+                battleHUD.playerBattleDialogue.text = "Enemy defeated!";
+                StartCoroutine(EndBattle());
+            }
+            else
+            {
+                battleHUD.enemyBattleDialogue.text = "ALAAA";
+                battleHUD.playerBattleDialogue.text = "Enemy still alive!";
+                battleState = BattleState.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+            }
         }
         else
         {
-            battleHUD.playerBattleDialogue.text = "Enemy still alive!";
+            battleHUD.playerBattleDialogue.text = "YOU MISSED";
             battleState = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
+       
+        UpdateHUDStats();
 
         yield return new WaitForSeconds(0.5f);
         playerMovement.animator.SetBool("isAttacking", false);
@@ -184,4 +248,61 @@ public class BattleSystem : MonoBehaviour
         // Move the enemy back to the original position
         enemy.transform.position = npcBattleEndPosition;
     }
+    #region HEALTH & DMG METHODS 
+    public void PlayerDamage()
+    {
+        int damageDealt = playerStats.GetDamage();
+        playerStats.damage = damageDealt;
+    }
+
+    public void EnemyDamage()
+    {
+        int damageDealt = npcInteraction.GetEnemyDamage();
+        npcInteraction.npc.damage = damageDealt;
+    }
+
+    public void EnemyHealthReset()
+    {
+        npcInteraction.npc.health = npcInteraction.npc.maxHealth;
+    }
+    #endregion
+
+    #region ROLLS METHODS
+    public int PlayerRoll()
+    {
+        diceRoll.RollDice();
+        if(diceRoll.RollDice() > 0)
+            return diceRoll.RollDice() + playerStats.agility;
+          
+        else 
+            return 0;
+
+    }
+
+    public bool PlayerHitChance()
+    {
+        if(PlayerRoll() > 6)
+            return true;
+        else 
+            return false;
+    }
+
+    public int EnemyRoll()
+    {
+        diceRoll.RollDice();
+        if (diceRoll.RollDice() > 0)
+            return diceRoll.RollDice() + npcInteraction.npc.agility;
+
+        else
+            return 0;
+    }
+
+    public bool EnemyHitChance() 
+    {
+        if (EnemyRoll() > 6)
+            return true;
+        else
+            return false;
+    }
+    #endregion
 }
