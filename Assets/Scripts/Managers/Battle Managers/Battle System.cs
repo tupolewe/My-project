@@ -73,45 +73,56 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
 
-        
-
         yield return new WaitForSeconds(1f);
         battleHUD.enemyBattleDialogue.text = "Ale ci zaraz dopierdole";
 
-        EnemyRoll();
-        EnemyHitChance();
-        if (EnemyHitChance())
+        if (npcInteraction.GetEnemyStamina())
         {
-            EnemyDamage();
-            bool isDead = playerStats.PlayerTakeDamage(npcInteraction.npc);
-
-
-            yield return new WaitForSeconds(1f);
-
-            if (isDead)
+            
+            EnemyRoll();
+            EnemyHitChance();
+          
+            if (EnemyHitChance())
             {
-                battleState = BattleState.LOST;
-                battleHUD.playerBattleDialogue.text = "You lost!";
-                StartCoroutine(EndBattle());
+                EnemyDamage();
+                bool isDead = playerStats.PlayerTakeDamage(npcInteraction.npc);
+
+
+                yield return new WaitForSeconds(1f);
+
+                if (isDead)
+                {
+                    battleState = BattleState.LOST;
+                    battleHUD.playerBattleDialogue.text = "You lost!";
+                    StartCoroutine(EndBattle());
+                }
+                else
+                {
+                    battleHUD.playerBattleDialogue.text = "You took damage";
+
+                    yield return new WaitForSeconds(1f);
+                    battleState = BattleState.PLAYERTURN;
+                    PlayerTurn();
+                }
             }
             else
             {
-                battleHUD.playerBattleDialogue.text = "You took damage";
-
+                Debug.Log("enemy missed");
+                battleHUD.playerBattleDialogue.text = "Enemy missed!";
                 yield return new WaitForSeconds(1f);
                 battleState = BattleState.PLAYERTURN;
                 PlayerTurn();
             }
         }
-        else
-        {
-            Debug.Log("enemy missed");
-            battleHUD.playerBattleDialogue.text = "Enemy missed!";
-            yield return new WaitForSeconds(1f);
+        else 
+        { battleHUD.enemyBattleDialogue.text = "ni ma sily";
+            //yield return new WaitForSeconds(1f);
+            npcInteraction.npc.stamina += 1;
             battleState = BattleState.PLAYERTURN;
             PlayerTurn();
         }
 
+        //npcInteraction.npc.stamina += 1;
         UpdateHUDStats();
 
     }
@@ -157,42 +168,52 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator PlayerAttack()
     {
-
-
-        PlayerRoll();
-        PlayerHitChance();
-        playerMovement.animator.SetBool("isAttacking", true);
-        if (PlayerHitChance())
+       
+        if (playerStats.GetStamina())
         {
-            PlayerDamage();
-            bool isDead = npcInteraction.TakeDamage(playerStats);
-            
+            PlayerRoll();
+            PlayerHitChance();
+            playerMovement.animator.SetBool("isAttacking", true);
 
-
-
-            if (isDead)
+            if (PlayerHitChance())
             {
-                battleState = BattleState.WON;
-                battleHUD.playerBattleDialogue.text = "Enemy defeated!";
-                StartCoroutine(EndBattle());
+                PlayerDamage();
+                bool isDead = npcInteraction.TakeDamage(playerStats);
+
+
+
+
+                if (isDead)
+                {
+                    battleState = BattleState.WON;
+                    battleHUD.playerBattleDialogue.text = "Enemy defeated!";
+                    StartCoroutine(EndBattle());
+                }
+                else
+                {
+                    battleHUD.enemyBattleDialogue.text = "ALAAA";
+                    battleHUD.playerBattleDialogue.text = "Enemy still alive!";
+                    battleState = BattleState.ENEMYTURN;
+                    StartCoroutine(EnemyTurn());
+                }
             }
             else
             {
-                battleHUD.enemyBattleDialogue.text = "ALAAA";
-                battleHUD.playerBattleDialogue.text = "Enemy still alive!";
+                battleHUD.playerBattleDialogue.text = "YOU MISSED";
                 battleState = BattleState.ENEMYTURN;
                 StartCoroutine(EnemyTurn());
             }
         }
-        else
+        else 
         {
-            battleHUD.playerBattleDialogue.text = "YOU MISSED";
+            battleHUD.playerBattleDialogue.text = "You have no stamina!";
             battleState = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
+        
        
         UpdateHUDStats();
-
+        //playerStats.stamina += 1;
         yield return new WaitForSeconds(0.5f);
         playerMovement.animator.SetBool("isAttacking", false);
 
@@ -214,6 +235,15 @@ public class BattleSystem : MonoBehaviour
         playerStats.health+=2;
         battleHUD.playerBattleDialogue.text = "You healed";
         UpdateHUDStats();
+        battleState = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
+    }
+
+    public void PlayerWait()
+    {
+        playerStats.stamina+=2;
+        UpdateHUDStats();
+        battleState = BattleState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
     }
     #endregion 
@@ -224,6 +254,8 @@ public class BattleSystem : MonoBehaviour
         battleHUD.enemyName.text = npcInteraction.npc.name;
         battleHUD.playerHealthHUD.text = "Health:" + playerStats.health.ToString();
         battleHUD.enemyHealthHUD.text = "Health:" + npcInteraction.npc.health.ToString();
+        battleHUD.playerStaminaHUD.text = "Stamina:" + playerStats.stamina.ToString();
+        battleHUD.enemyStaminaHUD.text = "Stamina:" + npcInteraction.npc.stamina.ToString();
     }
 
     public void RayCastNPCCheck()

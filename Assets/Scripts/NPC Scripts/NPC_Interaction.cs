@@ -22,6 +22,7 @@ public class NPC_Interaction : MonoBehaviour, Interactable
     public void Start()
     {
         npc.health = npc.maxHealth;
+        npc.stamina = npc.maxStamina;
     }
 
     public void Interact()
@@ -49,5 +50,24 @@ public class NPC_Interaction : MonoBehaviour, Interactable
         return Random.Range(npc.minDamage, npc.maxDamage);
     }
 
+    public bool GetEnemyStamina()
+    {
+        if (npc.stamina >= 2)
+        {
+            npc.stamina -= 2;
+            return true;
+        }
+        else if (npc.stamina <= 0)
+        {
+            npc.stamina = 0;
+            return false;
+        }
 
+        else if (npc.stamina == 1)
+        {
+            return false;
+        }
+        else { return true; }
+            
+    }
 }

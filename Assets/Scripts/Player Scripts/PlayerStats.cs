@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     public NPC_prefab npc; 
     public NPC_Interaction npcInteraction;
     public PlayerRayCast playerRayCast;
+
+     
     
    public int GetDamage()
     {
@@ -42,7 +44,29 @@ public class PlayerStats : MonoBehaviour
             return false;
     }
 
-   
+   public bool GetStamina()
+    {
+        if (stamina >= 2)
+        {
+            stamina -= 2;
+            return true;
+        }
+        else if (stamina <= 0)
+        {
+            stamina = 0;
+            return false;
+        }
+
+        else if (stamina == 1)
+        {
+            return false;
+        }
+        else { return true; }
+
+
+    }
+
+
 
         
 }

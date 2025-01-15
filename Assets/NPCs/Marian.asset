@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Marian
   lvl: 1
-  health: 6
+  health: 4
   maxHealth: 10
   damage: 1
   minDamage: 1
   maxDamage: 2
-  stamina: 3
+  stamina: 5
+  maxStamina: 5
   agility: 2

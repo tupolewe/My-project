@@ -16,6 +16,8 @@ public class BattleHUD : MonoBehaviour
     public TextMeshProUGUI playerHealthHUD;
     public TextMeshProUGUI enemyHealthHUD;
     public TextMeshProUGUI enemyName;
+    public TextMeshProUGUI playerStaminaHUD;
+    public TextMeshProUGUI enemyStaminaHUD;
     [Space]
     public Canvas battleCanvas;
     
@@ -47,6 +49,15 @@ public class BattleHUD : MonoBehaviour
             
 
        
+    }
+
+    public void OnWaitButton()
+    {
+        if (battleSystem.battleState == BattleState.PLAYERTURN)
+        {
+            battleSystem.PlayerWait();
+
+        }
     }
 
 

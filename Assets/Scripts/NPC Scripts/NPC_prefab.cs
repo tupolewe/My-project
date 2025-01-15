@@ -15,6 +15,7 @@ public class NPC_prefab : ScriptableObject
     public int minDamage;
     public int maxDamage;
     public int stamina;
+    public int maxStamina;
     public int agility;
 
     
