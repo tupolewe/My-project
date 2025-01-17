@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PlayerRayCast : MonoBehaviour
@@ -12,7 +13,12 @@ public class PlayerRayCast : MonoBehaviour
     public static Vector2 playerInteractPos; //tracks player position at the moment of interaciton
     public static Vector2 npcInteractPos; //tracks enemy position at the moment of interaciton
     public GameObject hitObject;
-    
+
+    public NPC_Interaction npcInteraction;
+
+    public DialogueManager dialogueManager;
+    public DialogueScript dialogueScript;
+
     void Update()
     {
         RayCastInteraction();
@@ -30,16 +36,22 @@ public class PlayerRayCast : MonoBehaviour
         {
 
             
-            // Try to get the Interactable component from the hit object
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
             
-            // If there's an interactable object and the player presses "E"
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            //npcInteraction.dialogueScript = hit.collider.GetComponent <DialogueScript>();
+
             if (interactable != null && Input.GetKeyDown(KeyCode.E))
             {
-                playerInteractPos = transform.position;
-                npcInteractPos = hit.collider.transform.position;
+                
+                dialogueManager.currentDialogueScript = dialogueScript;
                 interactable.Interact();
-                Debug.Log("Interakcja");
+               
+
+
+                //playerInteractPos = transform.position;
+                //npcInteractPos = hit.collider.transform.position;
+                //interactable.Interact();
+                //Debug.Log("Interakcja");
                 
 
             }
@@ -54,5 +66,7 @@ public class PlayerRayCast : MonoBehaviour
             hitObject = null;    
         }
     }
+
+   
         
 }

@@ -18,6 +18,11 @@ public class NPC_Interaction : MonoBehaviour, Interactable
     public PlayerStats playerStats;
 
     public static int npcHealth;
+    [Header("Dialogue Related Variables")]
+    [Space]
+    public DialogueManager dialogueManager;
+    public DialogueScript dialogueScript;
+    public DialogueHUD dialogueHUD;
 
     public void Start()
     {
@@ -27,7 +32,10 @@ public class NPC_Interaction : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        battleSystem.StartCoroutine(battleSystem.SetupBattle());
+        dialogueHUD.gameObject.SetActive(true);
+        dialogueManager.StartDialogue(dialogueScript);
+
+        //battleSystem.StartCoroutine(battleSystem.SetupBattle());
     }
 
     public bool TakeDamage(PlayerStats playerStats)
