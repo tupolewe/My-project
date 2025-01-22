@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     
 
 
-    Vector2 movement;
+    public Vector2 movement;
 
     public void Start()
     {
@@ -89,19 +90,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void SpriteFlip()
     {
-        if(movement.x < 0)
+        if (movement.x < 0)
         {
             spriteRenderer.flipX = true;
             playerRayCast.rayDirection = Vector2.left;
         }
-        else if (movement.x > 0) 
+        else if (movement.x > 0)
         {
             spriteRenderer.flipX = false;
+        }
+        else if (movement.x > 0)
+        {
             playerRayCast.rayDirection = Vector2.right;
         }
+        else if (movement.y < 0)
+        {
+            playerRayCast.rayDirection = Vector2.down;
+        }
+        else if (movement.y > 0)
+        {
+            playerRayCast.rayDirection = Vector2.up;
+        }
+        else
+        {
+            playerRayCast.rayDirection = Vector2.right;
+        }
+
     }
 
-
+    
 
     #endregion
 }

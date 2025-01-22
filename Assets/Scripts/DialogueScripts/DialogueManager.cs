@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public DialogueHUD dialogueHUD;
 
+    public BattleSystem battleSystem;
+
     public void StartDialogue(DialogueScript dialogueScript)
     {
         playerMovement.inBattle = true;
@@ -61,10 +63,9 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         dialogueHUD.gameObject.SetActive(false);
-        playerMovement.inBattle = false;
         currentLineIndex = 0;
         currentDialogueScript = null;
-
+        battleSystem.StartCoroutine(battleSystem.SetupBattle());
         Debug.Log("Dialogue Ended");
     }
 

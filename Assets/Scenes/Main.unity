@@ -639,6 +639,7 @@ MonoBehaviour:
   playerRayCast: {fileID: 886015113}
   playerMovement: {fileID: 2080930769}
   dialogueHUD: {fileID: 1260394534}
+  battleSystem: {fileID: 1101575999}
 --- !u!4 &344860867
 Transform:
   m_ObjectHideFlags: 0
@@ -654,71 +655,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &388133593
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -44.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300523891037140468, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1919795803851862111, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_SortingOrder
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2512631965464830936, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_CellLayout
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2856631120540338318, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
-      propertyPath: m_Name
-      value: Free Japanese City
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 54f0354b47128b84e83807e9018b40b9, type: 3}
 --- !u!1 &431449215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,11 +1537,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0eba42bb71071a4fb1040e6862b35de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDistance: 1.39
+  radius: 1
   hitLayers:
     serializedVersion: 2
     m_Bits: 119
+  raycastOrigin: {fileID: 0}
+  rayDistance: 1.39
   rayDirection: {x: 1, y: 0}
+  playerMovement: {fileID: 0}
   hitObject: {fileID: 0}
   npcInteraction: {fileID: 0}
   dialogueManager: {fileID: 344860866}
@@ -2702,7 +2641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e08b2587f1aecc3468c2c494e2a31964, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 203a12725aaa6434d9adac3a97ce9097, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3765,6 +3704,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2080930770}
   inBattle: 0
   playerRayCast: {fileID: 886015113}
+  movement: {x: 0, y: 0}
 --- !u!212 &2080930770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4183,7 +4123,6 @@ SceneRoots:
   - {fileID: 2080930771}
   - {fileID: 1932327807}
   - {fileID: 2090669790}
-  - {fileID: 388133593}
   - {fileID: 1101576000}
   - {fileID: 1579081365}
   - {fileID: 431449216}

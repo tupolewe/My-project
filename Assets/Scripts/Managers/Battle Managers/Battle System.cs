@@ -74,7 +74,7 @@ public class BattleSystem : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
-        battleHUD.enemyBattleDialogue.text = "Ale ci zaraz dopierdole";
+        battleHUD.enemyBattleDialogue.text = "Juz po tobie";
 
         if (npcInteraction.GetEnemyStamina())
         {
@@ -241,7 +241,8 @@ public class BattleSystem : MonoBehaviour
 
     public void PlayerWait()
     {
-        playerStats.stamina+=2;
+        playerStats.stamina+=3;
+        battleHUD.playerBattleDialogue.text = "Stamina Restored";
         UpdateHUDStats();
         battleState = BattleState.ENEMYTURN;
         StartCoroutine(EnemyTurn());
