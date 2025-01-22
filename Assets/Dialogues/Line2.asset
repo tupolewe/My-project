@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Line2
   m_EditorClassIdentifier: 
   speakerName: Testo
-  dialogueText: kotycz czis, kuantalupa, ananas, szejk
+  dialogueText: oddalam to pytanie
   speakerImage: {fileID: 21300000, guid: e08b2587f1aecc3468c2c494e2a31964, type: 3}
