@@ -8,9 +8,12 @@ using UnityEngine.UI;
 public class DialogueHUD : MonoBehaviour
 {
     public DialogueManager dialogueManager;
-    public Sprite speakerImage;
+    public Image speakerImage;
     public TextMeshProUGUI speakerName;
     public TextMeshProUGUI dialogue;
+
+
+    
 
     public void Start()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -13,10 +14,12 @@ public class DialogueManager : MonoBehaviour
     public int currentLineIndex;
 
     public PlayerRayCast playerRayCast;
+    public PlayerMovement playerMovement;
     public DialogueHUD dialogueHUD;
 
     public void StartDialogue(DialogueScript dialogueScript)
     {
+        playerMovement.inBattle = true;
         currentDialogueScript = dialogueScript;
         currentLineIndex = 0;
         DisplayCurrentLine();
@@ -30,7 +33,8 @@ public class DialogueManager : MonoBehaviour
             DialogueLine line = currentDialogueScript.dialogueLines[currentLineIndex];
             dialogueHUD.speakerName.text = line.speakerName;
             dialogueHUD.dialogue.text = line.dialogueText;
-            dialogueHUD.speakerImage = line.speakerImage;
+            dialogueHUD.speakerImage.sprite = line.speakerImage;
+            
             Debug.Log("koniec open dialog");
 
             
@@ -43,16 +47,31 @@ public class DialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-        currentLineIndex++;
-        DisplayCurrentLine();
+        if(Input.GetKeyDown(KeyCode.Space) && currentDialogueScript != null) 
+        {
+            currentLineIndex++;
+            DisplayCurrentLine();
+        }
+        
+       
+       
     }
 
 
     public void EndDialogue()
     {
-        speakerNameText.text = null;
-        dialogueText.text = null;
-        speakerImage = null;
+        dialogueHUD.gameObject.SetActive(false);
+        playerMovement.inBattle = false;
+        currentLineIndex = 0;
+        currentDialogueScript = null;
+
         Debug.Log("Dialogue Ended");
     }
+
+    public void Update()
+    {
+        NextLine();
+    }
+
+    
 }
