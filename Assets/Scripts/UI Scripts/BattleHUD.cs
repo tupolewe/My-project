@@ -20,6 +20,9 @@ public class BattleHUD : MonoBehaviour
     public TextMeshProUGUI enemyStaminaHUD;
     [Space]
     public Canvas battleCanvas;
+    public Image enemyImage; 
+    public DialogueManager dialogueManager;
+    public SoundController soundController;
     
     void Start()
     {
@@ -33,6 +36,7 @@ public class BattleHUD : MonoBehaviour
         if (battleSystem.battleState == BattleState.PLAYERTURN)
         {
             StartCoroutine(battleSystem.PlayerAttack());
+            soundController.AttackSound();
         }
            
        

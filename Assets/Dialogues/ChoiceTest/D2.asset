@@ -15,4 +15,5 @@ MonoBehaviour:
   speakerName: Marain
   dialogueText: ssspierdalajjj
   speakerImage: {fileID: 21300000, guid: 7726e6dc8e8920a41bb262199a0eb7ad, type: 3}
+  combatLine: 0
   choices: []

@@ -35,6 +35,7 @@ public class BattleSystem : MonoBehaviour
     [Header("Dice Roll")]
     [Space]
     public DiceRoll diceRoll;
+    public SoundController soundController;
 
 
     public void Update()
@@ -47,8 +48,10 @@ public class BattleSystem : MonoBehaviour
     #region IENUMERATORS
     public IEnumerator SetupBattle()
     {
-       
-       enemy = playerRayCast.hitObject;
+
+   
+
+        enemy = playerRayCast.hitObject;
        mainCamera.gameObject.transform.SetParent(null);
        battleState = BattleState.START;
        playerMovement.inBattle = true;
@@ -58,10 +61,12 @@ public class BattleSystem : MonoBehaviour
        enemy.transform.position = enemyBattlePosition.position;
        mainCamera.gameObject.transform.position = battleCameraPosition.transform.position;
        npcInteraction = enemy.GetComponent<NPC_Interaction>();
-       
+        soundController.CombatTheme();
+       battleHUD.enemyImage.sprite = npcInteraction.artwork.sprite;
 
-       
-       battleHUD.playerBattleDialogue.text = "The fight starts now!";
+
+
+        battleHUD.playerBattleDialogue.text = "The fight starts now!";
        UpdateHUDStats();
 
        yield return new WaitForSeconds(2f);
@@ -163,6 +168,7 @@ public class BattleSystem : MonoBehaviour
             EndPositionSetup();
         }
 
+        soundController.MainTheme();
         player.transform.localScale -= new Vector3(5, 5, 0);
     }
 

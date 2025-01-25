@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     public DialogueHUD dialogueHUD;
 
     public BattleSystem battleSystem;
+    public BattleHUD battleHUD;
 
     public void StartDialogue(DialogueScript dialogueScript)
     {
@@ -57,14 +58,18 @@ public class DialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && currentDialogueScript != null) 
+        if (Input.GetKeyDown(KeyCode.Space) && currentDialogueScript != null)
         {
-            currentLineIndex++;
-            DisplayCurrentLine();
+            if (currentLineIndex < currentDialogueScript.dialogueLines.Count - 1)
+            {
+                currentLineIndex++;
+                DisplayCurrentLine();
+            }
+            else
+            {
+                EndDialogue();
+            }
         }
-        
-       
-       
     }
 
 
@@ -81,6 +86,7 @@ public class DialogueManager : MonoBehaviour
                 currentLineIndex = 0;
                 currentDialogueScript = null;
                 battleSystem.StartCoroutine(battleSystem.SetupBattle());
+                
             }
             else
             {

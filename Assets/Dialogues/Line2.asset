@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: Testo
   dialogueText: oddalam to pytanie
-  speakerImage: {fileID: 21300000, guid: e08b2587f1aecc3468c2c494e2a31964, type: 3}
+  speakerImage: {fileID: 21300000, guid: 58310854265b5bc44a1352247128218c, type: 3}
+  combatLine: 0
+  choices: []
