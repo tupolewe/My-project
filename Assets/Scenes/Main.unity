@@ -426,6 +426,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 168577136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &216814083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216814084}
+  m_Layer: 5
+  m_Name: ChoicesContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &216814084
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216814083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260394533}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 172.6, y: -271.1}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &259379613
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3743,41 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1057992182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1057992183}
+  m_Layer: 5
+  m_Name: ChoicesContainer (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1057992183
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057992182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260394533}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 463.99997, y: -285.9}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1082625269
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,6 +4266,8 @@ RectTransform:
   - {fileID: 871512280}
   - {fileID: 2011170662}
   - {fileID: 1533911849}
+  - {fileID: 216814084}
+  - {fileID: 1057992183}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4219,6 +4291,8 @@ MonoBehaviour:
   speakerImage: {fileID: 1533911850}
   speakerName: {fileID: 2011170664}
   dialogue: {fileID: 871512281}
+  choicesContainer: {fileID: 216814084}
+  choiceButtonPrefab: {fileID: 7606120442679646325, guid: 0f2e61abc27d8ee46a5d6eb39bead6ad, type: 3}
 --- !u!1 &1298672415
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,7 +5434,7 @@ MonoBehaviour:
   battleSystem: {fileID: 1101575999}
   playerStats: {fileID: 1494180484}
   dialogueManager: {fileID: 344860866}
-  dialogueScript: {fileID: 11400000, guid: d1a6653de06399d4e98f9e0954f6ce01, type: 2}
+  dialogueScript: {fileID: 11400000, guid: 6916f63254b1a944aa79d6dd5d000cc5, type: 2}
   dialogueHUD: {fileID: 1260394534}
 --- !u!95 &1932327810
 Animator:

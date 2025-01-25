@@ -9,5 +9,7 @@ public class DialogueLine : ScriptableObject
 {
     public string speakerName; // Name of the speaker
     public string dialogueText; // Dialogue text
-    public Sprite speakerImage; 
+    public Sprite speakerImage;
+    public bool combatLine;
+    public List<DialogueChoice> choices; // branching choices 
 }

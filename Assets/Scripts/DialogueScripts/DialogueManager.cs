@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -37,7 +38,14 @@ public class DialogueManager : MonoBehaviour
             dialogueHUD.dialogue.text = line.dialogueText;
             dialogueHUD.speakerImage.sprite = line.speakerImage;
             
-            Debug.Log("koniec open dialog");
+            if (line.choices != null && line.choices.Count > 0) 
+            {
+                DisplayChoices(line.choices);   
+            }
+            else
+            {
+                dialogueHUD.ClearChoices();
+            }
 
             
         }
@@ -62,11 +70,64 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        dialogueHUD.gameObject.SetActive(false);
-        currentLineIndex = 0;
-        currentDialogueScript = null;
-        battleSystem.StartCoroutine(battleSystem.SetupBattle());
-        Debug.Log("Dialogue Ended");
+        if (currentLineIndex < currentDialogueScript.dialogueLines.Count)
+        {
+            DialogueLine line = currentDialogueScript.dialogueLines[currentLineIndex];
+
+            if (line.combatLine)
+            {
+                Debug.Log("Dialogue Ended with fight");
+                dialogueHUD.gameObject.SetActive(false);
+                currentLineIndex = 0;
+                currentDialogueScript = null;
+                battleSystem.StartCoroutine(battleSystem.SetupBattle());
+            }
+            else
+            {
+                Debug.Log("Dialogue Ended without fight");
+                playerMovement.inBattle = false;
+                dialogueHUD.gameObject.SetActive(false);
+                currentLineIndex = 0;
+                currentDialogueScript = null;
+            }
+        }
+        else
+        {
+            Debug.LogError("EndDialogue called with an out-of-range index!");
+        }
+    }
+
+
+
+    public void DisplayChoices(List<DialogueChoice> choices)
+    {
+
+
+        dialogueHUD.ClearChoices();
+
+        for (int i = 0; i < choices.Count; i++)
+        {
+            int capturedIndex = i; // Capture the current index in a local variable
+            Button choiceButton = dialogueHUD.CreateChoiceButton(capturedIndex);
+            choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choices[capturedIndex].choiceText;
+
+            choiceButton.onClick.AddListener(() =>
+            {
+                HandleChoiceSelection(choices[capturedIndex]);
+            });
+        }
+    }
+
+    public void HandleChoiceSelection(DialogueChoice choice)
+    {
+        if (choice.nextDialogue != null)
+        {
+            StartDialogue(choice.nextDialogue);
+        }
+        else
+        {
+            EndDialogue();
+        }
     }
 
     public void Update()
