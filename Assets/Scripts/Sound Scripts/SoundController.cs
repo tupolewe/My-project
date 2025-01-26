@@ -1,17 +1,27 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SoundController : MonoBehaviour
 {
     public AudioSource src;
     public AudioClip mainTheme;
     public AudioClip combatTheme;
-    public AudioClip clip3;
+    public AudioClip bolecHideout;
 
-    private void Start()
+    public Dictionary<string, Action> soundMethods;
+
+    public void Start()
     {
+        
+        soundMethods = new Dictionary<string, Action>
+        {
+            { "MainTheme", MainTheme },
+            { "CombatTheme", CombatTheme },
+            { "BolecHideOut", BolecHideOut },
+            { "AttackSound", AttackSound }
+        };
+
         MainTheme();
     }
 
@@ -19,9 +29,7 @@ public class SoundController : MonoBehaviour
     {
         src.clip = combatTheme;
         src.Play();
-        
     }
-    
 
     public void MainTheme()
     {
@@ -33,5 +41,17 @@ public class SoundController : MonoBehaviour
     {
         src.clip = combatTheme;
         src.Play();
+    }
+
+    public void BolecHideOut()
+    {
+        src.clip = bolecHideout;
+        src.Play();
+    }
+
+    
+    public Dictionary<string, Action> GetSoundMethods()
+    {
+        return soundMethods;
     }
 }
