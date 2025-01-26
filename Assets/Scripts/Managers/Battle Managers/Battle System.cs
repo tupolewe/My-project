@@ -48,25 +48,21 @@ public class BattleSystem : MonoBehaviour
     #region IENUMERATORS
     public IEnumerator SetupBattle()
     {
-
-   
-
-        enemy = playerRayCast.hitObject;
+       enemy = playerRayCast.hitObject;
        mainCamera.gameObject.transform.SetParent(null);
+       mainCamera.orthographicSize = 5f;
        battleState = BattleState.START;
        playerMovement.inBattle = true;
        battleCanvas.gameObject.SetActive(true);
        player.transform.position = playerBattlePosition.position;
-        player.transform.localScale += new Vector3(5, 5, 0);
+       player.transform.localScale += new Vector3(5, 5, 0);
+       enemy.transform.localScale += new Vector3(1f, 1f, 0);
        enemy.transform.position = enemyBattlePosition.position;
        mainCamera.gameObject.transform.position = battleCameraPosition.transform.position;
        npcInteraction = enemy.GetComponent<NPC_Interaction>();
-        soundController.CombatTheme();
+       soundController.CombatTheme();
        battleHUD.enemyImage.sprite = npcInteraction.artwork.sprite;
-
-
-
-        battleHUD.playerBattleDialogue.text = "The fight starts now!";
+       battleHUD.playerBattleDialogue.text = "The fight starts now!";
        UpdateHUDStats();
 
        yield return new WaitForSeconds(2f);
@@ -122,7 +118,7 @@ public class BattleSystem : MonoBehaviour
         else 
         { battleHUD.enemyBattleDialogue.text = "ni ma sily";
             //yield return new WaitForSeconds(1f);
-            npcInteraction.npc.stamina += 1;
+            npcInteraction.npc.stamina += 2;
             battleState = BattleState.PLAYERTURN;
             PlayerTurn();
         }
@@ -170,6 +166,10 @@ public class BattleSystem : MonoBehaviour
 
         soundController.MainTheme();
         player.transform.localScale -= new Vector3(5, 5, 0);
+        enemy.transform.localScale -= new Vector3(1f, 1f, 0);
+        mainCamera.orthographicSize = 3f;
+        mainCamera.transform.position = new Vector3(-0.99f, -1.5f, -10f);
+
     }
 
     public IEnumerator PlayerAttack()

@@ -30,8 +30,17 @@ public class DialogueHUD : MonoBehaviour
         Button button = Instantiate(choiceButtonPrefab, choicesContainer);
 
         RectTransform rectTransform = button.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-index * 400, 0); // Adjust X offset for spacing
 
+        //rectTransform.anchoredPosition = new Vector2(-index * 400, 0); // Adjust X offset for spacing
+
+        if (index <= 2) 
+        {
+            rectTransform.anchoredPosition = new Vector2(-index * 450, 0); // Adjust X offset for spacing
+        }
+        else if (index >= 3) 
+        {
+            rectTransform.anchoredPosition = new Vector2(-index * 170, 0); // Adjust X offset for spacing
+        }
         return button;
     }
 

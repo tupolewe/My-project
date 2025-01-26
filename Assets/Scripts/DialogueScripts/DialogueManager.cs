@@ -116,6 +116,8 @@ public class DialogueManager : MonoBehaviour
             int capturedIndex = i; // Capture the current index in a local variable
             Button choiceButton = dialogueHUD.CreateChoiceButton(capturedIndex);
             choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choices[capturedIndex].choiceText;
+            choiceButton.GetComponentInChildren<TextMeshProUGUI>().enableAutoSizing = true;
+            choiceButton.GetComponentInChildren<TextMeshProUGUI>().fontSizeMax = 20;
 
             choiceButton.onClick.AddListener(() =>
             {
