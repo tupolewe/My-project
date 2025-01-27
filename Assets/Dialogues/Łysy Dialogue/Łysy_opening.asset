@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421bc10d08eac98468034b2a9969329e, type: 3}
+  m_Name: "\u0141ysy_opening"
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - {fileID: 11400000, guid: c478f61892712dd429d7162400cd32d1, type: 2}
+  - {fileID: 11400000, guid: 34805f801e4b6124c9ac49019097c196, type: 2}
+  - {fileID: 11400000, guid: db1df8428db4a674dad801cd4eb3c61b, type: 2}
+  - {fileID: 11400000, guid: df5c3b379ddb33f488336e40757aec85, type: 2}
+  - {fileID: 11400000, guid: f83fd55d82371664882f14c0358e99b4, type: 2}
+  - {fileID: 11400000, guid: 4afe7d03eeda10e49975ccdc8758f596, type: 2}
+  - {fileID: 11400000, guid: 280d435bec388cc43a69cbbed3c4f32c, type: 2}
+  - {fileID: 11400000, guid: 939f851f47ad7c64db75ab0e5cee8c58, type: 2}
+  - {fileID: 11400000, guid: fe3b1d8ea4823fc478114953e9dad1c1, type: 2}
+  - {fileID: 11400000, guid: c9653d8a6120f09499555c2783898d5f, type: 2}

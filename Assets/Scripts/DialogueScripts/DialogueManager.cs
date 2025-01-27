@@ -117,6 +117,7 @@ public class DialogueManager : MonoBehaviour
             Button choiceButton = dialogueHUD.CreateChoiceButton(capturedIndex);
             choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choices[capturedIndex].choiceText;
             choiceButton.GetComponentInChildren<TextMeshProUGUI>().enableAutoSizing = true;
+            choiceButton.GetComponentInChildren<TextMeshProUGUI>().fontSizeMin = 12;
             choiceButton.GetComponentInChildren<TextMeshProUGUI>().fontSizeMax = 20;
 
             choiceButton.onClick.AddListener(() =>

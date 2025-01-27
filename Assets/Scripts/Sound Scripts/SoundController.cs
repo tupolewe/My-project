@@ -8,6 +8,7 @@ public class SoundController : MonoBehaviour
     public AudioClip mainTheme;
     public AudioClip combatTheme;
     public AudioClip bolecHideout;
+    public AudioClip lysyTheme;
 
     public Dictionary<string, Action> soundMethods;
 
@@ -19,7 +20,8 @@ public class SoundController : MonoBehaviour
             { "MainTheme", MainTheme },
             { "CombatTheme", CombatTheme },
             { "BolecHideOut", BolecHideOut },
-            { "AttackSound", AttackSound }
+            { "AttackSound", AttackSound },
+            { "LysyTheme", LysyTheme },
         };
 
         MainTheme();
@@ -48,7 +50,11 @@ public class SoundController : MonoBehaviour
         src.clip = bolecHideout;
         src.Play();
     }
-
+    public void LysyTheme()
+    {
+        src.clip = lysyTheme;   
+        src.Play();
+    }
     
     public Dictionary<string, Action> GetSoundMethods()
     {

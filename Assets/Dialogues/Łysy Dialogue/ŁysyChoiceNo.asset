@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a91b4fe0fa248a45aa52edc1a7a080d, type: 3}
+  m_Name: "\u0141ysyChoiceNo"
+  m_EditorClassIdentifier: 
+  choiceText: "Dobra pomog\u0119 Ci"
+  nextDialogue: {fileID: 11400000, guid: 4930371b7b2b20c48ba23dc9d5a084ff, type: 2}
