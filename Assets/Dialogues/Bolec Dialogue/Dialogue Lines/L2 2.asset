@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d78257f2b90b54599f05b8e89fee5a, type: 3}
-  m_Name: L1
+  m_Name: L2 2
   m_EditorClassIdentifier: 
   speakerName: Bolec
-  dialogueText: "Oooo Seba, siemano dobrze ci\u0119 widzie\u0107"
+  dialogueText: "Od 2 dni lokalna menelnia stwierdzi\u0142a, \u017Ce zajebistym pomys\u0142em
+    b\u0119dzie przesiadywanie tam "
   speakerImage: {fileID: 21300000, guid: f01a2277d334e934986fa43984aa7c30, type: 3}
   combatLine: 0
   endingLine: 0

@@ -21,8 +21,11 @@ public class DialogueManager : MonoBehaviour
     public BattleSystem battleSystem;
     public BattleHUD battleHUD;
 
+    
+
     public void StartDialogue(DialogueScript dialogueScript)
     {
+        playerRayCast.interacted = true;
         playerMovement.inBattle = true;
         currentDialogueScript = dialogueScript;
         currentLineIndex = 0;
@@ -78,6 +81,7 @@ public class DialogueManager : MonoBehaviour
         if (currentLineIndex < currentDialogueScript.dialogueLines.Count)
         {
             DialogueLine line = currentDialogueScript.dialogueLines[currentLineIndex];
+            playerRayCast.interacted = false;
 
             if (line.combatLine)
             {

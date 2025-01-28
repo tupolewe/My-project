@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d78257f2b90b54599f05b8e89fee5a, type: 3}
-  m_Name: L1
+  m_Name: L2 7
   m_EditorClassIdentifier: 
   speakerName: Bolec
-  dialogueText: "Oooo Seba, siemano dobrze ci\u0119 widzie\u0107"
+  dialogueText: "Ooo prosz\u0119, chcesz si\u0119 zaj\u0105\u0107 gangsterk\u0105?
+    NIe spodziewa\u0142em si\u0119..."
   speakerImage: {fileID: 21300000, guid: f01a2277d334e934986fa43984aa7c30, type: 3}
   combatLine: 0
   endingLine: 0

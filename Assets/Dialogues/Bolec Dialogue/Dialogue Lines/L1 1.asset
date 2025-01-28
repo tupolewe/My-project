@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L1 1
   m_EditorClassIdentifier: 
   speakerName: Bolec
-  dialogueText: 'Bo ten... wiesz... mam pewien problem z menelami '
+  dialogueText: "Niech zgadn\u0119, ta \u0142ysa pa\u0142a ci\u0119 tu przys\u0142a\u0142a "
   speakerImage: {fileID: 21300000, guid: f01a2277d334e934986fa43984aa7c30, type: 3}
   combatLine: 0
+  endingLine: 0
   choices: []

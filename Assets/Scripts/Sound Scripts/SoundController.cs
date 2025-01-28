@@ -24,7 +24,7 @@ public class SoundController : MonoBehaviour
             { "LysyTheme", LysyTheme },
         };
 
-        MainTheme();
+        LysyTheme();
     }
 
     public void CombatTheme()

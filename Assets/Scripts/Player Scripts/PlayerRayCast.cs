@@ -14,7 +14,8 @@ public class PlayerRayCast : MonoBehaviour
 
     public float rayDistance;
     public Vector2 rayDirection;
-    
+    public bool interacted;
+
     public static Vector2 playerInteractPos; //tracks player position at the moment of interaciton
     public static Vector2 npcInteractPos; //tracks enemy position at the moment of interaciton
     public GameObject hitObject;
@@ -46,8 +47,9 @@ public class PlayerRayCast : MonoBehaviour
             {
                 detectedObjects.Add(collider.gameObject);
                 hitObject = collider.gameObject;
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && interacted == false)
                 {
+                    
                     dialogueManager.currentDialogueScript = dialogueScript;
                     playerInteractPos = transform.position;
                     npcInteractPos = collider.transform.position;

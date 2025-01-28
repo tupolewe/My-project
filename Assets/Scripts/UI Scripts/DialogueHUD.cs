@@ -35,7 +35,7 @@ public class DialogueHUD : MonoBehaviour
 
         if (index <= 2) 
         {
-            rectTransform.anchoredPosition = new Vector2(-index * 450, 0); // Adjust X offset for spacing
+            rectTransform.anchoredPosition = new Vector2(-index * 380, 0); // Adjust X offset for spacing
         }
         else if (index >= 3) 
         {

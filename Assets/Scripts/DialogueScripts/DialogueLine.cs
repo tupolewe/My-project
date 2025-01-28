@@ -11,5 +11,6 @@ public class DialogueLine : ScriptableObject
     public string dialogueText; // Dialogue text
     public Sprite speakerImage;
     public bool combatLine;
+    public bool endingLine;
     public List<DialogueChoice> choices; // branching choices 
 }

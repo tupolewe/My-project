@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 421bc10d08eac98468034b2a9969329e, type: 3}
-  m_Name: DialogueScript1 1
+  m_Name: DialogueScript1 3
   m_EditorClassIdentifier: 
   dialogueLines:
-  - {fileID: 11400000, guid: f6311427db5c0ae448e650e3f4537e40, type: 2}
+  - {fileID: 11400000, guid: a48dcd3dbf016484dbfcdf53bf3bfb18, type: 2}
   - {fileID: 11400000, guid: c59ce6bdc0c14c44cbae22e9a1939ba0, type: 2}
   - {fileID: 11400000, guid: 512d87c1d67609549bc32d5482100440, type: 2}
   - {fileID: 11400000, guid: 290c54dfcd38ddd43ba23e0211059af9, type: 2}

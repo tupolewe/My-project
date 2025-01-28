@@ -168,7 +168,7 @@ public class BattleSystem : MonoBehaviour
         player.transform.localScale -= new Vector3(5, 5, 0);
         enemy.transform.localScale -= new Vector3(1f, 1f, 0);
         mainCamera.orthographicSize = 3f;
-        mainCamera.transform.position = new Vector3(-0.99f, -1.5f, -10f);
+        
 
     }
 
