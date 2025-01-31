@@ -13,4 +13,5 @@ public class DialogueLine : ScriptableObject
     public bool combatLine;
     public bool endingLine;
     public List<DialogueChoice> choices; // branching choices 
+    public DialogueScript nextDialogue; //the dialogue script to load after the transition 
 }

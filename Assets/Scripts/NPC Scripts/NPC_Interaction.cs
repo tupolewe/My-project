@@ -33,6 +33,7 @@ public class NPC_Interaction : MonoBehaviour, Interactable
     public void Interact()
     {
         dialogueHUD.gameObject.SetActive(true);
+        dialogueManager.npc = this; 
         dialogueManager.StartDialogue(dialogueScript);
 
         //battleSystem.StartCoroutine(battleSystem.SetupBattle());

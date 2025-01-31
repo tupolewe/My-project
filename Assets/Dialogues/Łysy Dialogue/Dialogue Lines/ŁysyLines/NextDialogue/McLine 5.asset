@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d78257f2b90b54599f05b8e89fee5a, type: 3}
-  m_Name: D2L1
+  m_Name: McLine 5
   m_EditorClassIdentifier: 
-  speakerName: KUBA
-  dialogueText: nsfw xD
-  speakerImage: {fileID: 21300000, guid: 5139afb167eae704fa0257beb43583bf, type: 3}
+  speakerName: Seba
+  dialogueText: 
+  speakerImage: {fileID: 21300000, guid: 58310854265b5bc44a1352247128218c, type: 3}
+  combatLine: 0
+  choices:
+  - {fileID: 11400000, guid: 8a262b1403df6334ba7c27bc5543b298, type: 2}
+  - {fileID: 11400000, guid: e0da1f2b8f568e948ad32725eed7d68d, type: 2}

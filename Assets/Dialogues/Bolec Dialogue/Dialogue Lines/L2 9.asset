@@ -16,5 +16,6 @@ MonoBehaviour:
   dialogueText: "\u015Awietnie, wr\xF3\u0107 do mnie jak sko\u0144czysz."
   speakerImage: {fileID: 21300000, guid: f01a2277d334e934986fa43984aa7c30, type: 3}
   combatLine: 0
-  endingLine: 0
+  endingLine: 1
   choices: []
+  nextDialogue: {fileID: 11400000, guid: ece232ee5f54e2845b7b018c927defe3, type: 2}

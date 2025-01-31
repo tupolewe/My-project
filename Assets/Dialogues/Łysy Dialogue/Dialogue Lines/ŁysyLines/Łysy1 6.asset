@@ -16,4 +16,6 @@ MonoBehaviour:
   dialogueText: :-(
   speakerImage: {fileID: 21300000, guid: a74dc269710a3554fa4d9e4e3fd80e48, type: 3}
   combatLine: 0
+  endingLine: 1
   choices: []
+  nextDialogue: {fileID: 11400000, guid: c7db935ea8dfbce48b63783f62c001e9, type: 2}

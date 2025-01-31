@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a91b4fe0fa248a45aa52edc1a7a080d, type: 3}
   m_Name: FightChoice
   m_EditorClassIdentifier: 
-  choiceText: Masz przejebane
+  choiceText: Dawaj na solo
   nextDialogue: {fileID: 11400000, guid: 7f9ccba5b4eda044e8b7908ed9e34457, type: 2}

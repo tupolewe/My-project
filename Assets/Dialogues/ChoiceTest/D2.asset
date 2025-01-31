@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d78257f2b90b54599f05b8e89fee5a, type: 3}
   m_Name: D2
   m_EditorClassIdentifier: 
-  speakerName: Marain
-  dialogueText: ssspierdalajjj
+  speakerName: Marian
+  dialogueText: weeeeeeeeeee...
   speakerImage: {fileID: 21300000, guid: 7726e6dc8e8920a41bb262199a0eb7ad, type: 3}
   combatLine: 0
+  endingLine: 0
   choices: []
+  nextDialogue: {fileID: 0}

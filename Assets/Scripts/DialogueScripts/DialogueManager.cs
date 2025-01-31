@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     public PlayerRayCast playerRayCast;
     public PlayerMovement playerMovement;
     public DialogueHUD dialogueHUD;
+    public NPC_Interaction npc;
 
     public BattleSystem battleSystem;
     public BattleHUD battleHUD;
@@ -82,6 +83,7 @@ public class DialogueManager : MonoBehaviour
         {
             DialogueLine line = currentDialogueScript.dialogueLines[currentLineIndex];
             playerRayCast.interacted = false;
+            
 
             if (line.combatLine)
             {
@@ -100,11 +102,19 @@ public class DialogueManager : MonoBehaviour
                 currentLineIndex = 0;
                 currentDialogueScript = null;
             }
+
+            if(line.endingLine) 
+            {
+                npc.dialogueScript = line.nextDialogue;
+                Debug.Log("next dialogue");
+            }
         }
         else
         {
             Debug.LogError("EndDialogue called with an out-of-range index!");
         }
+
+        
     }
 
 

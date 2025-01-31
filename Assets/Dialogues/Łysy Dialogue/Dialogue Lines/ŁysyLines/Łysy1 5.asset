@@ -16,4 +16,6 @@ MonoBehaviour:
   dialogueText: "DZI\u0118KI MORDO odp\u0142ace Ci si\u0119, nie po\u017Ca\u0142ujesz "
   speakerImage: {fileID: 21300000, guid: a74dc269710a3554fa4d9e4e3fd80e48, type: 3}
   combatLine: 0
+  endingLine: 1
   choices: []
+  nextDialogue: {fileID: 11400000, guid: 29def09f17af2794eb8913d2f54dfa90, type: 2}
